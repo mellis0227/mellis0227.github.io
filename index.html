@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mitchell Ellis</title>
+  <meta name="description" content="Mitchell Ellis - Computer Science graduate (UMN Duluth, 2026) and entry-level software developer in the Twin Cities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #1c1917;
+      --muted: #57534e;
+      --border: #e7e5e4;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --tag-bg: #f5f5f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0c0a09;
+        --surface: #1c1917;
+        --text: #f5f5f4;
+        --muted: #a8a29e;
+        --border: #292524;
+        --accent: #60a5fa;
+        --accent-soft: #172554;
+        --tag-bg: #292524;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0c0a09;
+      --surface: #1c1917;
+      --text: #f5f5f4;
+      --muted: #a8a29e;
+      --border: #292524;
+      --accent: #60a5fa;
+      --accent-soft: #172554;
+      --tag-bg: #292524;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+    nav .logo { font-family: "JetBrains Mono", monospace; font-weight: 500; color: var(--text); }
+    nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+    nav ul a { color: var(--muted); font-size: 14px; }
+    nav ul a:hover { color: var(--text); text-decoration: none; }
+    .theme-btn {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 15px;
+    }
+    @media (max-width: 560px) { nav ul { display: none; } }
+
+    /* Hero */
+    header { padding: 88px 0 64px; }
+    .eyebrow { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 14px; margin: 0 0 12px; }
+    h1 { font-size: clamp(36px, 7vw, 54px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+    .lede { font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 0 28px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block; padding: 10px 18px; border-radius: 8px; font-weight: 500; font-size: 15px;
+      border: 1px solid var(--border); color: var(--text); background: var(--surface);
+    }
+    .btn:hover { text-decoration: none; border-color: var(--accent); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin-top: 28px; }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+
+    /* Sections */
+    section { padding: 56px 0; border-top: 1px solid var(--border); scroll-margin-top: 40px; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0 0 28px; font-weight: 600; }
+    h3 { font-size: 19px; margin: 0 0 4px; }
+    p { margin: 0 0 16px; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px;
+    }
+    .meta { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+    .card ul { margin: 0 0 16px; padding-left: 20px; }
+    .card li { margin-bottom: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+    .tags li {
+      font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+      background: var(--tag-bg); border-radius: 6px; padding: 4px 10px; margin: 0;
+    }
+    .badge {
+      display: inline-block; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent); margin-left: 8px; vertical-align: middle;
+    }
+
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .skills .card { margin: 0; }
+    .skills h3 { font-size: 15px; margin-bottom: 12px; }
+
+    .timeline-item { display: grid; grid-template-columns: 150px 1fr; gap: 20px; margin-bottom: 28px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item .when { color: var(--muted); font-size: 14px; font-family: "JetBrains Mono", monospace; padding-top: 3px; }
+    .timeline-item p { color: var(--muted); margin: 6px 0 0; }
+    @media (max-width: 560px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a href="#" class="logo">mitchell.ellis</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header>
+      <p class="eyebrow">Hi, I'm</p>
+      <h1>Mitchell Ellis</h1>
+      <p class="lede">
+        Computer Science graduate from the University of Minnesota Duluth.
+        I write Java, Python, C++ and Dart, and I've shipped features on an Agile team.
+        Now I'm looking for my first software engineering role in the Twin Cities.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn" href="MitchellEllisResume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/mitch-ellis-50a9142ab/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="status">Open to entry-level software roles · Twin Cities, remote or hybrid</div>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I finished my B.A. in Computer Science, with a minor in Computer Engineering, at UMN Duluth in May 2026.
+        My coursework went all the way down the stack, from digital logic and computer architecture
+        up through operating systems, software analysis and design, and software engineering.
+      </p>
+      <p>
+        Before and during school I worked customer-facing jobs. At Best Buy I spent a lot of time explaining
+        technical problems to people who just wanted their device to work. At Kwik Trip I train new coworkers
+        and cover shift-lead duties. Both taught me to stay calm under pressure and to communicate clearly,
+        and I bring that to the way I work on code.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <article class="card">
+        <h3>Workout Tracker App</h3>
+        <div class="meta">Scrum Developer · Software Engineering course, UMN Duluth · 6-person team</div>
+        <p>A mobile app for logging workouts, tracking exercises and viewing progress over time.</p>
+        <ul>
+          <li>Built features in Dart and Flutter, including workout logging, exercise tracking and progress views</li>
+          <li>Took part in the full Scrum cycle: sprint planning, daily standups and sprint reviews</li>
+          <li>Debugged and shipped new features based on sprint feedback, keeping code quality up across iterations</li>
+          <li>Managed branches and resolved merge conflicts in a shared GitHub repo</li>
+        </ul>
+        <ul class="tags">
+          <li>Dart</li><li>Flutter</li><li>Git</li><li>Agile / Scrum</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>This Portfolio <span class="badge">Live</span></h3>
+        <div class="meta">Personal project</div>
+        <p>A fast, responsive personal site with automatic dark mode, written in plain HTML and CSS with no framework and hosted on GitHub Pages.</p>
+        <ul class="tags">
+          <li>HTML</li><li>CSS</li><li>GitHub Pages</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="card">
+          <h3>Languages</h3>
+          <ul class="tags"><li>Java</li><li>Python</li><li>C++</li><li>Dart</li><li>HTML</li></ul>
+        </div>
+        <div class="card">
+          <h3>Frameworks &amp; Tools</h3>
+          <ul class="tags"><li>Flutter</li><li>Git / GitHub</li><li>VS Code</li><li>Claude Code</li></ul>
+        </div>
+        <div class="card">
+          <h3>Foundations</h3>
+          <ul class="tags"><li>Data Structures</li><li>Algorithms</li><li>OOP</li><li>Operating Systems</li><li>Computer Architecture</li></ul>
+        </div>
+        <div class="card">
+          <h3>Ways of Working</h3>
+          <ul class="tags"><li>Agile / Scrum</li><li>Debugging</li><li>Team Collaboration</li><li>Tech Support</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience &amp; Education</h2>
+
+      <div class="timeline-item">
+        <div class="when">2023 – 2026</div>
+        <div>
+          <h3>B.A. Computer Science, Minor in Computer Engineering</h3>
+          <div class="meta" style="margin:0">University of Minnesota Duluth</div>
+          <p>Software Engineering, Software Analysis &amp; Design, Operating Systems, Computer Organization &amp; Architecture, Digital Logic, Discrete Structures.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2023 – Present</div>
+        <div>
+          <h3>Guest Service Associate</h3>
+          <div class="meta" style="margin:0">Kwik Trip · Carver, MN</div>
+          <p>Train new coworkers and cover shift-lead duties, including opening and closing the store. I handle cash and inventory and resolve guest issues during peak hours.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2021 – 2022</div>
+        <div>
+          <h3>Store Associate</h3>
+          <div class="meta" style="margin:0">Best Buy · Eden Prairie, MN</div>
+          <p>Gave technical support and troubleshooting help across a wide range of consumer electronics, and walked customers through product features and purchase decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lede" style="margin-bottom:24px">If you're hiring for an entry-level developer, or just want to talk shop, I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:mitchellis2716@gmail.com">mitchellis2716@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/mitch-ellis-50a9142ab/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Mitchell Ellis · Victoria, MN</div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved) root.dataset.theme = saved;
+    } catch (e) {}
+    btn.addEventListener('click', () => {
+      const dark = root.dataset.theme
+        ? root.dataset.theme === 'dark'
+        : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
