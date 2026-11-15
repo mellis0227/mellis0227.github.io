@@ -112,6 +112,18 @@
       background: var(--accent-soft); color: var(--accent); margin-left: 8px; vertical-align: middle;
     }
 
+    .feature { display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: start; }
+    .demo { margin: 0; }
+    .demo video {
+      display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 10px;
+      background: #000; border: 1px solid var(--border);
+    }
+    .demo figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 8px; }
+    @media (max-width: 640px) {
+      .feature { grid-template-columns: 1fr; }
+      .demo { max-width: 260px; margin: 0 auto; }
+    }
+
     .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
     .skills .card { margin: 0; }
     .skills h3 { font-size: 15px; margin-bottom: 12px; }
@@ -180,6 +192,34 @@
       <h2>Projects</h2>
 
       <article class="card">
+        <div class="feature">
+          <div>
+            <h3>Moonshot: Daily Baseball Trivia <span class="badge">Live</span></h3>
+            <div class="meta">Personal project · Built with Claude Code · Nov 2026</div>
+            <p>A daily baseball trivia game in a pixel-art stadium. Each day brings four at-bats and a Rally Round, and rarer correct answers score bigger hits, from singles up to home runs.</p>
+            <ul>
+              <li>Optional Google sign-in (Firebase Authentication) that syncs each player's results and streak across devices through Cloud Firestore</li>
+              <li>Anonymous daily score rankings, so players can see how they compare with everyone who played that day</li>
+              <li>Firestore security rules and a privacy page, with no analytics and no names or emails stored in the database</li>
+              <li>Node.js scripts that build the site and schedule daily puzzles from the question bank so no question repeats</li>
+              <li>Deployed on Firebase Hosting with a custom domain</li>
+            </ul>
+            <ul class="tags">
+              <li>JavaScript</li><li>HTML</li><li>CSS</li><li>Firebase</li><li>Firestore</li><li>Node.js</li><li>Claude Code</li>
+            </ul>
+            <p class="card-link"><a href="https://playmoonshot.app/" target="_blank" rel="noopener">Play it at playmoonshot.app →</a></p>
+          </div>
+          <figure class="demo">
+            <video controls playsinline preload="none" poster="media/moonshot-poster.jpg">
+              <source src="media/moonshot-demo.mp4" type="video/mp4">
+              <a href="media/moonshot-demo.mp4">Watch the demo video</a>
+            </video>
+            <figcaption>75-second gameplay demo</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card">
         <h3>Workout Tracker App</h3>
         <div class="meta">Scrum Developer · Software Engineering course, UMN Duluth · 6-person team</div>
         <p>A mobile app for logging workouts, tracking exercises and viewing progress over time.</p>
@@ -197,8 +237,8 @@
 
       <article class="card">
         <h3>This Portfolio <span class="badge">Live</span></h3>
-        <div class="meta">Personal project</div>
-        <p>A fast, responsive personal site with automatic dark mode, written in plain HTML and CSS with no framework and hosted on GitHub Pages.</p>
+        <div class="meta">Personal project · Built with Claude Code</div>
+        <p>A fast, responsive personal site with automatic dark mode, in plain HTML and CSS with no framework, hosted on GitHub Pages.</p>
         <ul class="tags">
           <li>HTML</li><li>CSS</li><li>GitHub Pages</li>
         </ul>
